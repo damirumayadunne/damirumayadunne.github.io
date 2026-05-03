@@ -1,26 +1,269 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ── MindGarden Design Tokens ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Typography */
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-playfair);
+
+  /* Calm, nature-inspired palette */
+  --color-cream: #FAF8F5;
+  --color-cream-dark: #F0EDE8;
+  --color-warm-white: #FDFCFA;
+  --color-beige: #E8E0D4;
+  --color-beige-dark: #D4C9B8;
+  --color-sage: #8FA98B;
+  --color-sage-light: #B5CBAE;
+  --color-sage-dark: #6B8A66;
+  --color-sage-muted: #A3B89E;
+  --color-brown: #8B7355;
+  --color-brown-light: #A68F72;
+  --color-brown-dark: #6B5740;
+  --color-blue-muted: #8BA4B8;
+  --color-blue-light: #B0C5D4;
+  --color-gold-soft: #C9B97A;
+  --color-gold-light: #E0D4A0;
+
+  /* ── Soft emotional accent colors ── */
+  --color-lavender: #B8A9D4;
+  --color-lavender-light: #D6CEE8;
+  --color-lavender-muted: #C4B8DC;
+  --color-sky: #A3C4D9;
+  --color-sky-light: #C5DDE9;
+  --color-sky-muted: #B4D0E0;
+  --color-peach: #D4AFA0;
+  --color-peach-light: #E8D0C4;
+  --color-peach-muted: #DCC0B2;
+  --color-rose: #CDA5A5;
+  --color-rose-light: #E0C4C4;
+  --color-rose-muted: #D6B4B4;
+
+  /* Text & surfaces */
+  --color-text-primary: #3D3529;
+  --color-text-secondary: #6B6358;
+  --color-text-muted: #9B9389;
+  --color-border: #E0D8CE;
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #FBF9F6;
+  --color-overlay: rgba(61, 53, 41, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Selection Style ── */
+::selection {
+  background-color: var(--color-lavender-light);
+  color: var(--color-text-primary);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-beige-dark);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sage-muted);
+}
+
+/* ── Section Spacing ── */
+.section-padding {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* ── Keyframe Animations ── */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.06; }
+  50% { transform: scale(1.08); opacity: 0.10; }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -15px) rotate(3deg); }
+  50% { transform: translate(-5px, -25px) rotate(-2deg); }
+  75% { transform: translate(-15px, -10px) rotate(4deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(143, 169, 139, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(143, 169, 139, 0.2); }
+}
+
+@keyframes glow-pulse-lavender {
+  0%, 100% { box-shadow: 0 0 16px rgba(184, 169, 212, 0.08); }
+  50% { box-shadow: 0 0 32px rgba(184, 169, 212, 0.18); }
+}
+
+@keyframes glow-pulse-sky {
+  0%, 100% { box-shadow: 0 0 16px rgba(163, 196, 217, 0.08); }
+  50% { box-shadow: 0 0 32px rgba(163, 196, 217, 0.18); }
+}
+
+@keyframes glow-pulse-peach {
+  0%, 100% { box-shadow: 0 0 16px rgba(212, 175, 160, 0.08); }
+  50% { box-shadow: 0 0 32px rgba(212, 175, 160, 0.18); }
+}
+
+@keyframes glow-pulse-gold {
+  0%, 100% { box-shadow: 0 0 16px rgba(201, 185, 122, 0.08); }
+  50% { box-shadow: 0 0 32px rgba(201, 185, 122, 0.18); }
+}
+
+@keyframes scroll-down {
+  0%, 20%, 100% { transform: translateY(0); opacity: 0.6; }
+  40% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ── Glass Card Effect ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ── Breathing Background Circles ── */
+.breathing-circle {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.breathing-circle-slow {
+  animation: breathe 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* ── Floating Particle ── */
+.float-particle {
+  animation: drift 12s ease-in-out infinite;
+}
+
+/* ── Glow Effect on Hover ── */
+.hover-glow {
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(143, 169, 139, 0.15), 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Emotional Glow Variants ── */
+.glow-lavender { animation: glow-pulse-lavender 4s ease-in-out infinite; }
+.glow-sky { animation: glow-pulse-sky 4s ease-in-out infinite; }
+.glow-peach { animation: glow-pulse-peach 4s ease-in-out infinite; }
+.glow-gold { animation: glow-pulse-gold 4s ease-in-out infinite; }
+
+/* ── Gradient Border Hover (emotional) ── */
+.gradient-border-hover {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.gradient-border-hover::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.gradient-border-hover:hover::before {
+  opacity: 1;
+  background: linear-gradient(135deg,
+    rgba(184, 169, 212, 0.3),
+    rgba(163, 196, 217, 0.3),
+    rgba(143, 169, 139, 0.3),
+    rgba(212, 175, 160, 0.2)
+  );
+}
+
+/* ── Organic Curve Section Divider ── */
+.section-curve {
+  position: relative;
+}
+.section-curve::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--color-surface-warm);
+  clip-path: ellipse(55% 100% at 50% 100%);
+  pointer-events: none;
+}
+
+/* ── Card Lift ── */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(143, 169, 139, 0.14), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Emotional Card Lift Variants ── */
+.card-lift-lavender:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(184, 169, 212, 0.14), 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.card-lift-sky:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(163, 196, 217, 0.14), 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.card-lift-peach:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(212, 175, 160, 0.14), 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.card-lift-gold:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(201, 185, 122, 0.14), 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+/* ── Scroll Indicator ── */
+.scroll-indicator {
+  animation: scroll-down 2.5s ease-in-out infinite;
 }
